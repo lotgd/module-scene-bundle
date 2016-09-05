@@ -59,7 +59,9 @@ class Module implements ModuleInterface {
         foreach ($villageScenes as $villageScene) {
             foreach (self::SceneTemplates as $template) {
                 $scene = self::getBaseScene($template);
-                $scene->setParent($villageScene);
+                if ($scene !== null) {
+                    $scene->setParent($villageScene);
+                }
             }
         }
 
