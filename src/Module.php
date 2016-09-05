@@ -24,9 +24,9 @@ class Module implements ModuleInterface {
     private static function getBaseScene($template)
     {
         switch($template) {
-            case SceneTemplates[0]:
+            case self::SceneTemplates[0]:
                 $pondScene = Scene::create([
-                    "template" => SceneTemplates[0],
+                    "template" => self::SceneTemplates[0],
                     "title" => "The Pond",
                     "description" => "A bit outside of the village, near the border to the dark deep forest, "
                         . "there is a place simply called «The Pond». It's name-giver, a small pond with a beautiful, "
@@ -36,7 +36,7 @@ class Module implements ModuleInterface {
                 ]);
 
                 $oakScene = Scene::create([
-                    "template" => SceneTemplates[1],
+                    "template" => self::SceneTemplates[1],
                     "title" => "The old oak",
                     "description" => "The old oaken tree, the oldest tree inside of the village and one of the few that "
                         . "didn't fell victim to the woodcutter, has a lot of old and fresh hearts cut inside it's bork, "
