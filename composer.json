@@ -26,7 +26,7 @@
     ],
     "require": {
         "lotgd/core": "dev-master",
-        "lotgd/village": "dev-master"
+        "lotgd/module-village": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.1|^5.1",
