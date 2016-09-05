@@ -1,0 +1,39 @@
+{
+    "name": "lotgd/module-scene-bundle",
+    "description": "A bundle of small scenes.",
+    "type": "lotgd-module",
+    "license": "AGPL-3.0",
+    "authors": [
+        {
+            "name": "Basilius Sauter",
+            "email": "basilius.sauter@gmail.com"
+        },
+        {
+            "name": "Austen McDonald",
+            "email": "austen.mcdonald@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LotGD\\Module\\SceneBundle\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://code.lot.gd"
+        }
+    ],
+    "require": {
+        "lotgd/core": "dev-master",
+        "lotgd/village": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.1|^5.1",
+        "phpunit/dbunit": "*"
+    },
+
+    "config": {
+        "secure-http": false
+    }
+}
