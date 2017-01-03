@@ -43,7 +43,8 @@ class Module implements ModuleInterface {
                     . "witness to the numerous lover's that wanted their love to last as long as this tree does.",
                 ]);
 
-                $oakScene->setParent($pondScene);
+                #$oakScene->setParent($pondScene);
+                $oakScene->setParents(new ArrayCollection([$pondScene]));
 
                 return $pondScene;
         }
@@ -60,7 +61,8 @@ class Module implements ModuleInterface {
             foreach (self::SceneTemplates as $template) {
                 $scene = self::getBaseScene($template);
                 if ($scene !== null) {
-                    $scene->setParent($villageScene);
+                    #$scene->setParent($villageScene);
+                    $scene->setParents(new ArrayCollection([$villageScene]));
                 }
             }
         }
