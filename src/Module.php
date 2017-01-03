@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace LotGD\Module\SceneBundle;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use LotGD\Core\Game;
 use LotGD\Core\Module as ModuleInterface;
 use LotGD\Core\Models\Module as ModuleModel;
@@ -43,7 +45,6 @@ class Module implements ModuleInterface {
                     . "witness to the numerous lover's that wanted their love to last as long as this tree does.",
                 ]);
 
-                #$oakScene->setParent($pondScene);
                 $oakScene->setParents(new ArrayCollection([$pondScene]));
 
                 return $pondScene;
@@ -61,7 +62,6 @@ class Module implements ModuleInterface {
             foreach (self::SceneTemplates as $template) {
                 $scene = self::getBaseScene($template);
                 if ($scene !== null) {
-                    #$scene->setParent($villageScene);
                     $scene->setParents(new ArrayCollection([$villageScene]));
                 }
             }
