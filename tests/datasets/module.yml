@@ -11,9 +11,9 @@ scenes:
     -
         id: 1
         title: "Village"
-        description: "You arrive in a village."
-        template: 'lotgd/test/village'
+        description: "The village square hustles and bustles. No one really notices that you're are standing there. You see various shops and businesses along main street. There is a curious looking rock to one side. On every side the village is surrounded by deep dark forest."
+        template: 'lotgd/module-village/village'
 modules:
     -
-        library: 'lotgd/test-module'
+        library: 'lotgd/module-village'
         createdAt: 2016-08-22

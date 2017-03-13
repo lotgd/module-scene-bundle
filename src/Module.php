@@ -58,7 +58,7 @@ class Module implements ModuleInterface {
             . "witness to the numerous lover's that wanted their love to last as long as this tree does.",
         ]);
 
-        $pondScene->addConnectionGroup(new SceneConnectionGroup(self::Groups["oak"][0], "Back"));
+        $oakScene->addConnectionGroup(new SceneConnectionGroup(self::Groups["oak"][0], "Back"));
 
         $pondScene
             ->getConnectionGroup(self::Groups["pond"][0])
@@ -79,7 +79,7 @@ class Module implements ModuleInterface {
                 [$pondScene, $oakScene] = self::getBaseScene();
 
                 // Connect the pond to the village
-                if ($villageScene->hasConnectionGroup(VillageModule::Group[1])) {
+                if ($villageScene->hasConnectionGroup(VillageModule::Groups[1])) {
                     $villageScene
                         ->getConnectionGroup(VillageModule::Group[1])
                         ->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
@@ -89,7 +89,7 @@ class Module implements ModuleInterface {
 
                 // connect the oak to the village in one direction only.
                 $oakScene
-                    ->getConnectionGroup(self::Groups["oak"]["back"])
+                    ->getConnectionGroup(self::Groups["oak"][0])
                     ->connect($villageScene, SceneConnectable::Unidirectional);
             }
         }
