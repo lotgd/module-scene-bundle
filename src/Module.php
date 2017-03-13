@@ -91,6 +91,9 @@ class Module implements ModuleInterface {
                 $oakScene
                     ->getConnectionGroup(self::Groups["oak"][0])
                     ->connect($villageScene, SceneConnectable::Unidirectional);
+
+                $pondScene->save($g->getEntityManager());
+                $oakScene->save($g->getEntityManager());
             }
         }
 
