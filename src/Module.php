@@ -75,26 +75,24 @@ class Module implements ModuleInterface {
             ->findBy(["template" => VillageModule::VillageScene]);
 
         foreach ($villageScenes as $villageScene) {
-            foreach (self::SceneTemplates as $template) {
-                [$pondScene, $oakScene] = self::getBaseScene();
+            [$pondScene, $oakScene] = self::getBaseScene();
 
-                // Connect the pond to the village
-                if ($villageScene->hasConnectionGroup(VillageModule::Groups[1])) {
-                    $villageScene
-                        ->getConnectionGroup(VillageModule::Groups[1])
-                        ->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
-                } else {
-                    $villageScene->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
-                }
-
-                // connect the oak to the village in one direction only.
-                $oakScene
-                    ->getConnectionGroup(self::Groups["oak"][0])
-                    ->connect($villageScene, SceneConnectable::Unidirectional);
-                
-                $g->getEntityManager()->persist($pondScene);
-                $g->getEntityManager()->persist($oakScene);
+            // Connect the pond to the village
+            if ($villageScene->hasConnectionGroup(VillageModule::Groups[1])) {
+                $villageScene
+                    ->getConnectionGroup(VillageModule::Groups[1])
+                    ->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
+            } else {
+                $villageScene->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
             }
+
+            // connect the oak to the village in one direction only.
+            $oakScene
+                ->getConnectionGroup(self::Groups["oak"][0])
+                ->connect($villageScene, SceneConnectable::Unidirectional);
+
+            $g->getEntityManager()->persist($pondScene);
+            $g->getEntityManager()->persist($oakScene);
         }
 
         $g->getEntityManager()->flush();
