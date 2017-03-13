@@ -81,7 +81,7 @@ class Module implements ModuleInterface {
                 // Connect the pond to the village
                 if ($villageScene->hasConnectionGroup(VillageModule::Groups[1])) {
                     $villageScene
-                        ->getConnectionGroup(VillageModule::Group[1])
+                        ->getConnectionGroup(VillageModule::Groups[1])
                         ->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
                 } else {
                     $villageScene->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
