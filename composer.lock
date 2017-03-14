@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "eccd5b9147496cd64995492649b050b9",
+    "content-hash": "34813c750809a0dc1a091b60d583a07e",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1088,7 +1088,7 @@
         },
         {
             "name": "lotgd/core",
-            "version": "dev-master",
+            "version": "v0.2.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lotgd/core.git",
@@ -1133,24 +1133,24 @@
                 "source": "https://github.com/lotgd/core/tree/revert-commit",
                 "issues": "https://github.com/lotgd/core/issues"
             },
-            "time": "2017-03-13 13:13:50"
+            "time": "2017-03-13T13:13:50+00:00"
         },
         {
             "name": "lotgd/module-village",
-            "version": "dev-master",
+            "version": "v0.2.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lotgd/module-village.git",
-                "reference": "d99b48468e049f07d4d6a4fd9e9204d7639114b7"
+                "reference": "e14bb4bf6243f079022cc0432db8466f066f93db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lotgd/module-village/zipball/d99b48468e049f07d4d6a4fd9e9204d7639114b7",
-                "reference": "d99b48468e049f07d4d6a4fd9e9204d7639114b7",
+                "url": "https://api.github.com/repos/lotgd/module-village/zipball/e14bb4bf6243f079022cc0432db8466f066f93db",
+                "reference": "e14bb4bf6243f079022cc0432db8466f066f93db",
                 "shasum": ""
             },
             "require": {
-                "lotgd/core": "dev-master"
+                "lotgd/core": "^0.2-alpha"
             },
             "require-dev": {
                 "phpunit/dbunit": "^2.0"
@@ -1176,10 +1176,10 @@
             ],
             "description": "A basic village.",
             "support": {
-                "source": "https://github.com/lotgd/module-village/tree/master",
+                "source": "https://github.com/lotgd/module-village/tree/version/0.2",
                 "issues": "https://github.com/lotgd/module-village/issues"
             },
-            "time": "2017-03-13 14:43:11"
+            "time": "2017-03-14T07:41:49+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3093,8 +3093,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "lotgd/core": 20,
-        "lotgd/module-village": 20
+        "lotgd/core": 15,
+        "lotgd/module-village": 15
     },
     "prefer-stable": false,
     "prefer-lowest": false,
