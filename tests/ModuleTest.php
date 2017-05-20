@@ -85,7 +85,12 @@ class ModuleTest extends ModelTestCase
     public function testHandleUnknownEvent()
     {
         // Always good to test a non-existing event just to make sure nothing happens :).
-        $context = [];
-        Module::handleEvent($this->g, 'e/lotgd/tests/unknown-event', $context);
+        $context = new \LotGD\Core\Events\EventContext(
+            "e/lotgd/tests/unknown-event",
+            "none",
+            \LotGD\Core\Events\EventContextData::create([])
+        );
+
+        Module::handleEvent($this->g, $context);
     }
 }

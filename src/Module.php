@@ -6,6 +6,7 @@ namespace LotGD\Module\SceneBundle;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use LotGD\Core\Game;
+use LotGD\Core\Events\EventContext;
 use LotGD\Core\Models\SceneConnectionGroup;
 use LotGD\Core\Models\SceneConnectable;
 use LotGD\Core\Module as ModuleInterface;
@@ -30,9 +31,9 @@ class Module implements ModuleInterface {
         ]
     ];
 
-    public static function handleEvent(Game $g, string $event, array &$context)
+    public static function handleEvent(Game $g, EventContext $context): EventContext
     {
-
+        return $context;
     }
 
     private static function getBaseScene(): array
