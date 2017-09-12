@@ -33,7 +33,12 @@ class ModuleTest extends ModelTestCase
         $logger->pushHandler(new NullHandler());
 
         // Create a Game object for use in these tests.
-        $this->g = new Game(new Configuration(getenv('LOTGD_TESTS_CONFIG_PATH')), $logger, $this->getEntityManager(), implode(DIRECTORY_SEPARATOR, [__DIR__, '..']));
+        $this->g = new Game(
+            new Configuration(getenv('LOTGD_TESTS_CONFIG_PATH')),
+            $logger,
+            $this->getEntityManager(),
+            implode(DIRECTORY_SEPARATOR, [__DIR__, '..'])
+        );
 
         // Register and unregister before/after each test, since
         // handleEvent() calls may expect the module be registered (for example,
