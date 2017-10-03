@@ -21,7 +21,7 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://code.lot.gd"
+            "url": "https://code.lot.gd"
         }
     ],
     "require": {
@@ -31,9 +31,5 @@
     "require-dev": {
         "phpunit/phpunit": "^4.1|^5.1",
         "phpunit/dbunit": "*"
-    },
-
-    "config": {
-        "secure-http": false
     }
 }
