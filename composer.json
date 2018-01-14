@@ -21,19 +21,15 @@
     "repositories": [
         {
             "type": "composer",
-            "url": "http://code.lot.gd"
+            "url": "https://code.lot.gd"
         }
     ],
     "require": {
-        "lotgd/core": "dev-master",
-        "lotgd/module-village": "dev-master"
+        "lotgd/core": "^0.4.0-alpha",
+        "lotgd/module-village": "^0.4.0-alpha"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.1|^5.1",
         "phpunit/dbunit": "*"
-    },
-
-    "config": {
-        "secure-http": false
     }
 }
