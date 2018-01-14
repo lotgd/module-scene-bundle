@@ -15,7 +15,7 @@ class ModuleTest extends ModelTestCase
 {
     const Library = 'lotgd/module-scene-bundle';
 
-    private $g;
+    public $g;
     private $moduleModel;
 
     protected function getDataSet(): \PHPUnit_Extensions_Database_DataSet_YamlDataSet
