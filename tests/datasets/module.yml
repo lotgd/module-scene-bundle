@@ -1,6 +1,6 @@
 characters:
     -
-        id: 1
+        id: "10000000-0000-0000-0000-000000000001"
         name: "Gandalf"
         displayName: "Gandalf the Grey"
         maxHealth: 100
@@ -9,7 +9,7 @@ characters:
         deletedAt:
 scenes:
     -
-        id: 1
+        id: "20000000-0000-0000-0000-000000000001"
         title: "Village"
         description: "The village square hustles and bustles. No one really notices that you're are standing there. You see various shops and businesses along main street. There is a curious looking rock to one side. On every side the village is surrounded by deep dark forest."
         template: 'lotgd/module-village/village'
