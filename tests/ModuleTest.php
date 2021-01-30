@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 use Monolog\Logger;
 use Monolog\Handler\NullHandler;
-
 use LotGD\Core\Configuration;
 use LotGD\Core\Game;
 use LotGD\Core\Models\Module as ModuleModel;
 use LotGD\Core\Tests\ModelTestCase;
+use Symfony\Component\Yaml\Yaml;
 
 use LotGD\Module\SceneBundle\Module;
 
@@ -18,22 +18,14 @@ class ModuleTest extends ModelTestCase
     public $g;
     private $moduleModel;
 
-    protected function getDataSet(): \PHPUnit_Extensions_Database_DataSet_YamlDataSet
+    public function getDataSet(): array
     {
-        return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet(implode(DIRECTORY_SEPARATOR, [__DIR__, 'datasets', 'module.yml']));
+        return Yaml::parseFile(implode(DIRECTORY_SEPARATOR, [__DIR__, 'datasets', 'module.yml']));
     }
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
-
-        // Make an empty logger for these tests. Feel free to change this
-        // to place log messages somewhere you can easily find them.
-        $logger  = new Logger('test');
-        $logger->pushHandler(new NullHandler());
-
-        // Create a Game object for use in these tests.
-        $this->g = new Game(new Configuration(getenv('LOTGD_TESTS_CONFIG_PATH')), $logger, $this->getEntityManager(), implode(DIRECTORY_SEPARATOR, [__DIR__, '..']));
 
         // Register and unregister before/after each test, since
         // handleEvent() calls may expect the module be registered (for example,
@@ -46,18 +38,21 @@ class ModuleTest extends ModelTestCase
         $this->g->getEntityManager()->clear();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
-        $this->g->getEntityManager()->flush();
-        $this->g->getEntityManager()->clear();
-
-        parent::tearDown();
+        $this->getEntityManager()->flush();
+        $this->getEntityManager()->clear();
 
         Module::onUnregister($this->g, $this->moduleModel);
+
         $m = $this->getEntityManager()->getRepository(ModuleModel::class)->find(self::Library);
         if ($m) {
             $m->delete($this->getEntityManager());
         }
+
+        $this->getEntityManager()->clear();
+
+        parent::tearDown();
     }
 
     // TODO for LotGD staff: this test assumes the schema in their yaml file
@@ -70,13 +65,7 @@ class ModuleTest extends ModelTestCase
         $m = $this->getEntityManager()->getRepository(ModuleModel::class)->find(self::Library);
         $m->delete($this->getEntityManager());
 
-        // Assert that databases are the same before and after.
-        // TODO for module author: update list of tables below to include the
-        // tables you modify during registration/unregistration.
-        $after = $this->getConnection()->createDataSet(['characters', 'scenes', 'modules']);
-        $before = $this->getDataSet();
-
-        $this->assertDataSetsEqual($before, $after);
+        $this->assertDataWasKeptIntact($this->getDataSet(), $this->getConnection()[0], ['characters', 'scenes', 'modules']);
 
         // Since tearDown() contains an onUnregister() call, this also tests
         // double-unregistering, which should be properly supported by modules.
@@ -91,6 +80,8 @@ class ModuleTest extends ModelTestCase
             \LotGD\Core\Events\EventContextData::create([])
         );
 
-        Module::handleEvent($this->g, $context);
+        $newContext = Module::handleEvent($this->g, $context);
+
+        $this->assertSame($context, $newContext);
     }
 }

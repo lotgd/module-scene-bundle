@@ -13,6 +13,7 @@ use LotGD\Core\Module as ModuleInterface;
 use LotGD\Core\Models\Module as ModuleModel;
 use LotGD\Core\Models\Scene;
 use LotGD\Module\Village\Module as VillageModule;
+use LotGD\Module\Village\SceneTemplates\VillageScene;
 
 class Module implements ModuleInterface {
     const ModuleIdentifier = "lotgd/module-scene-bundle";
@@ -38,26 +39,24 @@ class Module implements ModuleInterface {
 
     private static function getBaseScene(): array
     {
-        $pondScene = Scene::create([
-            "template" => self::SceneTemplates[0],
-            "title" => "The Pond",
-            "description" => "A bit outside of the village, near the border to the dark deep forest, "
+        $pondScene = new Scene(
+            title: "The Pond",
+            description: "A bit outside of the village, near the border to the dark deep forest, "
                 . "there is a place simply called «The Pond». It's name-giver, a small pond with a beautiful, "
                 . "blue-green colour, is in it's centre, enclosed by meadow. After seeing this place, everyone "
                 . "nows immediatly why this place is liked among lovers. A bit more separate, an old oak tree"
                 . "stands mighty.",
-        ]);
+        );
 
         $pondScene->addConnectionGroup(new SceneConnectionGroup(self::Groups["pond"][0], "The Pond"));
         $pondScene->addConnectionGroup(new SceneConnectionGroup(self::Groups["pond"][1], "Back"));
 
-        $oakScene = Scene::create([
-            "template" => self::SceneTemplates[1],
-            "title" => "The old oak",
-            "description" => "The old oaken tree, the oldest tree inside of the village and one of the few that "
+        $oakScene = new Scene(
+            title: "The old oak",
+            description: "The old oaken tree, the oldest tree inside of the village and one of the few that "
                 . "didn't fell victim to the woodcutter, has a lot of old and fresh hearts cut inside it's bork, "
-            . "witness to the numerous lover's that wanted their love to last as long as this tree does.",
-        ]);
+                . "witness to the numerous lover's that wanted their love to last as long as this tree does.",
+        );
 
         $oakScene->addConnectionGroup(new SceneConnectionGroup(self::Groups["oak"][0], "Back"));
 
@@ -79,9 +78,9 @@ class Module implements ModuleInterface {
             [$pondScene, $oakScene] = self::getBaseScene();
 
             // Connect the pond to the village
-            if ($villageScene->hasConnectionGroup(VillageModule::Groups[1])) {
+            if ($villageScene->hasConnectionGroup(VillageScene::Groups[1])) {
                 $villageScene
-                    ->getConnectionGroup(VillageModule::Groups[1])
+                    ->getConnectionGroup(VillageScene::Groups[1])
                     ->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
             } else {
                 $villageScene->connect($pondScene->getConnectionGroup(self::Groups["pond"][1]));
@@ -95,8 +94,6 @@ class Module implements ModuleInterface {
             $g->getEntityManager()->persist($pondScene);
             $g->getEntityManager()->persist($oakScene);
         }
-
-        $g->getEntityManager()->flush();
     }
 
     public static function onUnregister(Game $g, ModuleModel $module)
@@ -109,7 +106,5 @@ class Module implements ModuleInterface {
                 $g->getEntityManager()->remove($scene);
             }
         }
-
-        $g->getEntityManager()->flush();
     }
 }
